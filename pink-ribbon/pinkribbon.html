@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looping Video</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
+        video { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* Floating Unmute Button Styling */
+        #unmuteBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: 1px solid #fff;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        #unmuteBtn:hover { background: #fff; color: #000; }
+    </style>
+</head>
+<body>
+
+    <!-- Video must still start muted to trick the browser into autoplaying -->
+    <video id="myVideo" autoplay loop muted playsinline>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <button id="unmuteBtn">🔊 Tap to Unmute</button>
+
+    <script>
+        const video = document.getElementById('myVideo');
+        const button = document.getElementById('unmuteBtn');
+
+        button.addEventListener('click', function() {
+            if (video.muted) {
+                video.muted = false; // Bypasses browser restrictions via a user click
+                button.innerText = "🔇 Mute Audio";
+            } else {
+                video.muted = true;
+                button.innerText = "🔊 Tap to Unmute";
+            }
+        });
+    </script>
+</body>
+</html>
